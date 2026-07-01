@@ -10,9 +10,13 @@ jobs:
   timeoutInMinutes: 12
   cancelTimeoutInMinutes: 2
   pool:
-    vmImage: windows-2022
+    vmImage: windows-2025
 
   steps:
+  - task: UseDotNet@2
+    inputs:
+      version: 8.0
+      
   - template: build-and-publish.yml
     parameters:
         relativeBaseFolder: src/${{ parameters.frameworkFolder }}
