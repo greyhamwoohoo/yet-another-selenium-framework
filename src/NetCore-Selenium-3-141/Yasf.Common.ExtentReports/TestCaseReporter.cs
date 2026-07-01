@@ -42,7 +42,8 @@ namespace Yasf.Common.ExtentReports
 
         public void Debug(string message)
         {
-            Log(Status.Debug, $"{message}");
+            // NOTE: .Debug appears to have been deprecated
+            Log(Status.Info, $"{message}");
         }
 
         public void Information(string message)
