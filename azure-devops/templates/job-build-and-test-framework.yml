@@ -15,8 +15,8 @@ jobs:
   steps:
   - task: UseDotNet@2
     inputs:
-      version: 8.0
-      
+      version: 8.x
+
   - template: build-and-publish.yml
     parameters:
         relativeBaseFolder: src/${{ parameters.frameworkFolder }}
