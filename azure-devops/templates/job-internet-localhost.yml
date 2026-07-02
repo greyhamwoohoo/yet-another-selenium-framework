@@ -10,15 +10,19 @@ jobs:
   timeoutInMinutes: 12
   cancelTimeoutInMinutes: 2
   pool:
-    vmImage: Ubuntu-20.04
+    vmImage: Ubuntu-24.04
 
   steps:
+  - task: UseDotNet@2
+    inputs:
+      version: 8.x
+
   - template: build-and-publish.yml
     parameters:
         relativeBaseFolder: src/${{ parameters.frameworkFolder }}
 
   - powershell: |
-      docker-compose up -d
+      docker compose up -d
     workingDirectory: infra/the-internet/docker-localhost
     displayName: Start TheInternet
 
@@ -35,7 +39,7 @@ jobs:
     inputs:
       command: custom
       custom: vstest
-      arguments: '$(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/TheInternet.SystemTests.Raw/bin/$(Build.Configuration)/net6.0/publish/TheInternet.SystemTests.Raw.dll --logger:"trx;LogFileName=TheInternet-Tests.trx"'
+      arguments: '$(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/TheInternet.SystemTests.Raw/bin/$(Build.Configuration)/net8.0/publish/TheInternet.SystemTests.Raw.dll --logger:"trx;LogFileName=TheInternet-Tests.trx"'
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/TheInternet-Tests.trx'
