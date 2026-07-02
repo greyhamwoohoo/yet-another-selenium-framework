@@ -43,7 +43,6 @@ namespace Yasf.Common.SessionManagement
                 var persistedSessionContentAsJObject = JsonConvert.DeserializeObject<JObject>(persistedSessionContent);
 
                 var officialResponse = Response.FromJson(persistedSession.OfficialResponse);
-                officialResponse.SessionId = persistedSession.Response.SessionId;
 
                 var newSession = new AttachableSeleniumSession()
                 {
@@ -54,9 +53,6 @@ namespace Yasf.Common.SessionManagement
                     RemoteServerUri = persistedSession.RemoteServerUri,
                     CommandRepositoryTypeName = persistedSession.CommandRepositoryTypeName
                 };
-
-                var officialResponseValueDictionary = officialResponse.Value as Dictionary<string, object>;
-                newSession.Response.Value = officialResponseValueDictionary["Value"];
 
                 return newSession;
             }

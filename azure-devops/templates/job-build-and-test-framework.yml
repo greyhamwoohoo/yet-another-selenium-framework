@@ -10,9 +10,13 @@ jobs:
   timeoutInMinutes: 12
   cancelTimeoutInMinutes: 2
   pool:
-    vmImage: windows-2022
+    vmImage: windows-2025
 
   steps:
+  - task: UseDotNet@2
+    inputs:
+      version: 8.x
+
   - template: build-and-publish.yml
     parameters:
         relativeBaseFolder: src/${{ parameters.frameworkFolder }}
@@ -21,7 +25,7 @@ jobs:
     displayName: 'Run Common.UnitTests'
     inputs:
       command: test
-      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.UnitTests/bin/$(Build.Configuration)/net6.0/publish
+      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.UnitTests/bin/$(Build.Configuration)/net8.0/publish
       arguments: Yasf.Common.UnitTests.dll
       publishTestResults: true
       testRunTitle: Common.UnitTests
@@ -30,7 +34,7 @@ jobs:
     displayName: 'Run Common.SystemTests'
     inputs:
       command: test
-      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.SystemTests/bin/$(Build.Configuration)/net6.0/publish
+      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.SystemTests/bin/$(Build.Configuration)/net8.0/publish
       arguments: Yasf.Common.SystemTests.dll
       publishTestResults: true
       testRunTitle: Common.SystemTests         
@@ -39,7 +43,7 @@ jobs:
     displayName: 'Run ExtentReports.System Tests'
     inputs:
       command: test
-      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.ExtentReports.SystemTests/bin/$(Build.Configuration)/net6.0/publish
+      workingDirectory: $(System.DefaultWorkingDirectory)/src/${{ parameters.frameworkFolder }}/Yasf.Common.ExtentReports.SystemTests/bin/$(Build.Configuration)/net8.0/publish
       arguments: Yasf.Common.ExtentReports.SystemTests.dll
       publishTestResults: true
       testRunTitle: Common.ExtentReports.SystemTests

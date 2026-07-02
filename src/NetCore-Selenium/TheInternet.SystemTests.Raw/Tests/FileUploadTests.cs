@@ -15,7 +15,7 @@ namespace TheInternet.SystemTests.Raw.Tests
         [Ignore("because this has issues in some execution contexts")]
         public void UploadFile()
         {
-            var path = System.IO.Path.Combine(TestContext.TestDeploymentDir, "Content", "SampleFileToUpload.txt");
+            var path = System.IO.Path.Combine(TestContext.DeploymentDirectory, "Content", "SampleFileToUpload.txt");
             var fileuploadElement = WebDriver.FindElements(By.XPath("//input[@id='file-upload']")).Single();
             fileuploadElement.SendKeys(path);
 

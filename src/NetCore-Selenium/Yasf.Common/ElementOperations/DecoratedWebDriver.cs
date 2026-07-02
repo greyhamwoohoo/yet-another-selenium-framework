@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Yasf.Common.ElementOperations.Contracts;
 using Yasf.Common.ExecutionContext.Runtime.ControlSettings;
 using Yasf.Common.Reporting.Contracts;
+using System.Threading.Tasks;
+using System;
 
 namespace Yasf.Common.ElementOperations
 {
@@ -53,6 +55,14 @@ namespace Yasf.Common.ElementOperations
         public void Dispose()
         {
             _original.Dispose();
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            // TODO: Revisit this
+            this.Dispose();
+
+            return ValueTask.CompletedTask;
         }
 
         public IWebElement FindElement(By by)

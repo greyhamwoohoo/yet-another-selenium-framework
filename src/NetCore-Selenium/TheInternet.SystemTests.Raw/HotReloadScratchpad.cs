@@ -55,7 +55,7 @@ namespace TheInternet.SystemTests.Raw
         public void HotReloadWorkflow()
         {
             // WebDriver.Navigate().GoToUrl("http://www.google.com");
-            // WebDriver.FindElement(By.Name("q")).SendKeys("howdi!" + Keys.Enter);
+            WebDriver.FindElement(By.Name("q")).SendKeys("howdi!" + Keys.Enter);
         }
     }
 }

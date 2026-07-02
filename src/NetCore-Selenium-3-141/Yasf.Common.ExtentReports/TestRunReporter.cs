@@ -9,7 +9,7 @@ namespace Yasf.Common.ExtentReports
         public string TestRunIdentity { get; }
         public string ReportOutputFolder => System.IO.Path.Combine(RootOutputFolder, TestRunIdentity);
         internal AventStack.ExtentReports.ExtentReports ExtentReporter { get; private set; }
-        private AventStack.ExtentReports.Reporter.ExtentHtmlReporter _htmlReporter;
+        private AventStack.ExtentReports.Reporter.ExtentSparkReporter _htmlReporter;
 
         public TestRunReporter(string rootOutputFolder, string testRunIdentity)
         {
@@ -22,7 +22,7 @@ namespace Yasf.Common.ExtentReports
             ExtentReporter = new AventStack.ExtentReports.ExtentReports();
 
             // NOTE: For some reason, I need to specify the path here or it goes 'one level up'. Am I missing something?
-            _htmlReporter = new AventStack.ExtentReports.Reporter.ExtentHtmlReporter(System.IO.Path.Combine(ReportOutputFolder, "index.html"));
+            _htmlReporter = new AventStack.ExtentReports.Reporter.ExtentSparkReporter(System.IO.Path.Combine(ReportOutputFolder, "index.html"));
 
             ExtentReporter.AttachReporter(_htmlReporter);
         }
