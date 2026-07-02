@@ -46,7 +46,7 @@ namespace Yasf.Common.Infrastructure
             var testExecutionContextName = $"{Environment.GetEnvironmentVariable($"{prefix}TEST_EXECUTION_CONTEXT") ?? defaultTestExecutionContext}";
             Log.Logger.Information($"Candidate Test Exection Context to use: {testExecutionContextName}");
 
-            if (testContext.Properties.Contains(TEST_EXECUTION_CONTEXT_KEY_NAME))
+            if (testContext.Properties.ContainsKey(TEST_EXECUTION_CONTEXT_KEY_NAME))
             {
                 Log.Logger.Information($"The .runsettings contains a property called {TEST_EXECUTION_CONTEXT_KEY_NAME}. We will retrieve that. ");
                 testExecutionContextName = Convert.ToString(testContext.Properties[TEST_EXECUTION_CONTEXT_KEY_NAME]);

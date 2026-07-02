@@ -42,7 +42,8 @@ namespace Yasf.Common.ExtentReports
 
         public void Debug(string message)
         {
-            Log(Status.Debug, $"{message}");
+            // Status.Debug appears to have been removed
+            Log(Status.Info, $"{message}");
         }
 
         public void Information(string message)

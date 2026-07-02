@@ -157,10 +157,9 @@ namespace Yasf.Common.UnitTests.Reporting
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void DefaultReportingCannotBeConfiguredAgain()
             {
-                manager.PopulateDefaultReportingContexts();
+                Assert.ThrowsExactly<InvalidOperationException>(() => manager.PopulateDefaultReportingContexts());
             }
         }
 
@@ -184,10 +183,9 @@ namespace Yasf.Common.UnitTests.Reporting
             }
 
             [TestMethod]
-            [ExpectedException(typeof(InvalidOperationException))]
             public void DefaultReportingCannotBeConfigured()
             {
-                manager.PopulateDefaultReportingContexts();
+                Assert.ThrowsExactly<InvalidOperationException>(() => manager.PopulateDefaultReportingContexts());
             }
         }
     }

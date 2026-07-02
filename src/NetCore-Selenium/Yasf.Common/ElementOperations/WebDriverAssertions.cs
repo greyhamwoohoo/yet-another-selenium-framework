@@ -235,7 +235,8 @@ namespace Yasf.Common.ElementOperations
 
             if (condition.State.HasFlag(ElementState.IsDisplayed))
             {
-                if (!webElement.Displayed) throw new NoSuchElementException($"The Element is not visible", new ElementNotVisibleException($"The Element is not visible: {webElement}"));
+                // NOTE: ElementNotVisibleException is not defined in Selenium 4+. ElementNotInteractableException is now the supported method: https://github.com/SeleniumHQ/selenium/issues/10538
+                if (!webElement.Displayed) throw new NoSuchElementException($"The Element is not visible", new ElementNotInteractableException($"The Element is not visible: {webElement}"));
             }
 
             if (condition.State.HasFlag(ElementState.IsEnabled))
