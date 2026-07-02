@@ -22,7 +22,7 @@ jobs:
         relativeBaseFolder: src/${{ parameters.frameworkFolder }}
 
   - powershell: |
-      docker-compose up -d
+      docker compose up -d
     workingDirectory: infra/the-internet/docker-localhost
     displayName: Start TheInternet
 
