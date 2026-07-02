@@ -42,11 +42,7 @@ namespace Yasf.Common.SessionManagement
                 var persistedSession = JsonConvert.DeserializeObject<AttachableSeleniumSession>(persistedSessionContent);
                 var persistedSessionContentAsJObject = JsonConvert.DeserializeObject<JObject>(persistedSessionContent);
 
-                // TODO: Refactor this to support attaching
-                /*
-
                 var officialResponse = Response.FromJson(persistedSession.OfficialResponse);
-                officialResponse.SessionId = persistedSession.Response.SessionId;
 
                 var newSession = new AttachableSeleniumSession()
                 {
@@ -58,11 +54,7 @@ namespace Yasf.Common.SessionManagement
                     CommandRepositoryTypeName = persistedSession.CommandRepositoryTypeName
                 };
 
-                var officialResponseValueDictionary = officialResponse.Value as Dictionary<string, object>;
-                newSession.Response.Value = officialResponseValueDictionary["Value"];
-
-                return newSession;*/
-                return null;
+                return newSession;
             }
             catch
             {

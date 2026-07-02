@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Yasf.Common.SessionManagement;
 
 namespace Yasf.Common.Drivers
@@ -138,11 +140,13 @@ namespace Yasf.Common.Drivers
                     var newSession = executor(driverCommandToExecute, parameters);
                     if (newSession.Status != WebDriverResult.Success) return newSession;
 
+                    // NOTE: The explicit serialization call here is to coerce Value, SessionId and Status to value, sessionId and status so that AttachableSeleniumSessionStorage
+                    //       can still blindly call Response.FromJson to rebuild a valid attachable browser context. 
                     var attachableSeleniumSession = new AttachableSeleniumSession()
                     {
                         BrowserName = _browserName,
                         Response = newSession,
-                        OfficialResponse = newSession.ToJson(),
+                        OfficialResponse = JsonSerializer.Serialize(newSession, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }),
                         RemoteServerUri = GetRemoteServerUri(),
                         CommandRepositoryTypeName = GetCommandInfoRepository().GetType().FullName
                     };
