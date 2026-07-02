@@ -1,6 +1,6 @@
 # References: https://github.com/SeleniumHQ/docker-selenium/blob/master/NodeChrome/Dockerfile
 #             https://askubuntu.com/questions/79280/how-to-install-chrome-browser-properly-via-command-line
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
 WORKDIR /app
 RUN apt-get update \
     && apt-get install -y gnupg2 \
@@ -10,7 +10,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install google-chrome-stable -y
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-and-publish
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-and-publish
 WORKDIR /bap
 COPY . .
 RUN cd TheInternet.SystemTests.Raw \
